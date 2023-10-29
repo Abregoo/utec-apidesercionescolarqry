@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>CUSTOM-compile</actionName>
+            <displayName>compile</displayName>
+            <goals>
+                <goal>compile</goal>
+            </goals>
+            <activatedProfiles>
+                <activatedProfile>mvn</activatedProfile>
+                <activatedProfile>compile</activatedProfile>
+                <activatedProfile>quarkus:dev</activatedProfile>
+            </activatedProfiles>
+        </action>
+    </actions>
