@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Objects;
 
 import org.utec.apidesercionescolarqry.infraestructura.repository.AlumnoRepository;
+import org.utec.apidesercionescolarqry.infraestructura.repository.VwAlumnoRepository;
 import org.utec.apidesercionescolarqry.model.Alumno;
+import org.utec.apidesercionescolarqry.model.VwAlumno;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -17,8 +19,15 @@ public class AlumnoService {
     @Inject
     AlumnoRepository alumnoRepository;
 
-    public List<Alumno> obtenerListadoAlumnos() {
-        return alumnoRepository.obtenerListadoAlumnos();
+    @Inject
+    VwAlumnoRepository vwAlumnoRepository;
+
+    public List<VwAlumno> obtenerListadoAlumnos() {
+        return vwAlumnoRepository.obtenerListadoAlumnos();
+    }
+
+    public VwAlumno obtenerAlumno(Integer id) {
+        return vwAlumnoRepository.obtenerAlumno(id);
     }
 
     @Transactional
@@ -26,7 +35,7 @@ public class AlumnoService {
         alumnoRepository.persist(alumno);
     }
 
-   @Transactional
+    @Transactional
     public void modificarAlumno(Alumno alumno) {
         Alumno alumnoModificar = alumnoRepository.obtenerAlumno(alumno.getIdAlumno());
 
@@ -47,20 +56,14 @@ public class AlumnoService {
         alumnoModificar.setEstado(alumno.getEstado());
     }
 
-
     @Transactional
     public void desactivarAlumno(Integer id) {
         Alumno alumnoDesactivar = alumnoRepository.obtenerAlumno(id);
 
-        if (Objects.isNull(alumnoDesactivar)) 
+        if (Objects.isNull(alumnoDesactivar))
             throw new BadRequestException("El alumno no fue encontrado");
-    
+
         alumnoDesactivar.setEstado(false);
     }
 
-
-
-    public Alumno obtenerAlumno(Integer id) {
-        return alumnoRepository.obtenerAlumno(id);
-    }
 }
