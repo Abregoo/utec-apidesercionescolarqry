@@ -1,33 +1,31 @@
 package org.utec.apidesercionescolarqry.model;
 
 import java.io.Serializable;
-import java.time.LocalDate; 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
+import jakarta.json.bind.annotation.JsonbDateFormat;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.json.bind.annotation.JsonbDateFormat;
-import java.time.LocalDateTime;
+
 @Entity
-public class DetalleMatriculaAlumno implements Serializable {
+public class VwDetaMatriculaAlumno implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idDetalleMatriculaAlumno;
-    private Integer idGrado;
     private Integer idAlumno;
-    private Integer idTurno;
-    private Integer idInstitucion;
-    private Integer idModalidad;
+    private String nombreGrado;
+    private String nombreTurno;
+    private String nombreInstitucion;
+    private String nombreModalidad;
     private Integer idEstadoMatricula;
     @JsonbDateFormat("dd/MM/yyyy")
     private LocalDate AnioLectivo;
     @JsonbDateFormat("dd/MM/yyyy")
     private LocalDateTime FechaMatricula;
-    private String nombreGrado;
-    private String nombreTurno;
-    private String nombreInstitucion;
-    private String nombreModalidad;
 
     public String getNombreGrado() {
         return this.nombreGrado;
@@ -69,14 +67,6 @@ public class DetalleMatriculaAlumno implements Serializable {
         this.idDetalleMatriculaAlumno = idDetalleMatriculaAlumno;
     }
 
-    public Integer getIdGrado() {
-        return this.idGrado;
-    }
-
-    public void setIdGrado(Integer idGrado) {
-        this.idGrado = idGrado;
-    }
-
     public Integer getIdAlumno() {
         return this.idAlumno;
     }
@@ -85,29 +75,6 @@ public class DetalleMatriculaAlumno implements Serializable {
         this.idAlumno = idAlumno;
     }
 
-    public Integer getIdTurno() {
-        return this.idTurno;
-    }
-
-    public void setIdTurno(Integer idTurno) {
-        this.idTurno = idTurno;
-    }
-
-    public Integer getIdInstitucion() {
-        return this.idInstitucion;
-    }
-
-    public void setIdInstitucion(Integer idInstitucion) {
-        this.idInstitucion = idInstitucion;
-    }
-
-    public Integer getIdModalidad() {
-        return this.idModalidad;
-    }
-
-    public void setIdModalidad(Integer idModalidad) {
-        this.idModalidad = idModalidad;
-    }
 
     public Integer getIdEstadoMatricula() {
         return this.idEstadoMatricula;
@@ -124,7 +91,7 @@ public class DetalleMatriculaAlumno implements Serializable {
     public void setAnioLectivo(LocalDate AnioLectivo) {
         this.AnioLectivo = AnioLectivo;
     }
-    
+
     public LocalDateTime getFechaMatricula() {
         return this.FechaMatricula;
     }
@@ -132,5 +99,5 @@ public class DetalleMatriculaAlumno implements Serializable {
     public void setFechaMatricula(LocalDateTime FechaMatricula) {
         this.FechaMatricula = FechaMatricula;
     }
-   
+
 }

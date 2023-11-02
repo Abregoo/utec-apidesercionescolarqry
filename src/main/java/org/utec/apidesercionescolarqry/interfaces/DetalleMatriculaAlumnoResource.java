@@ -3,6 +3,7 @@ package org.utec.apidesercionescolarqry.interfaces;
 import java.util.List;
 import org.utec.apidesercionescolarqry.aplicacion.DetalleMatriculaAlumnoService;
 import org.utec.apidesercionescolarqry.model.DetalleMatriculaAlumno;
+import org.utec.apidesercionescolarqry.model.VwDetaMatriculaAlumno;
 
 import jakarta.inject.Inject;
 import jakarta.ws.rs.DELETE;
@@ -21,7 +22,7 @@ public class DetalleMatriculaAlumnoResource {
 
     @GET
     @Path("listados")
-    public List<DetalleMatriculaAlumno> listarDetalleMatricula() {
+    public List<VwDetaMatriculaAlumno> listarDetalleMatricula() {
         return detalleMatriculaAlumnoService.obtenerListadoDetalleMatricula();
     }
 
@@ -37,11 +38,7 @@ public class DetalleMatriculaAlumnoResource {
         return Response.ok().build();
     }
 
-    // @PUT
-    // public Response modificarDetalleMatricula(DetalleMatriculaAlumno detalleMatricula) {
-    //     detalleMatriculaAlumnoService.modificarDetalleMatricula(detalleMatricula);
-    //     return Response.ok().build();
-    // }
+
 
   
 }

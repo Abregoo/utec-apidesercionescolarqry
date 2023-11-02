@@ -3,12 +3,14 @@ package org.utec.apidesercionescolarqry.aplicacion;
 import java.util.List;
 import java.util.Objects;
 import org.utec.apidesercionescolarqry.infraestructura.repository.DetalleMatriculaAlumnoRepository;
+import org.utec.apidesercionescolarqry.infraestructura.repository.VwDetaMatriculaAlumnoRepository;
 import org.utec.apidesercionescolarqry.model.DetalleMatriculaAlumno;
+import org.utec.apidesercionescolarqry.model.VwDetaMatriculaAlumno;
+
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.BadRequestException;
-import jakarta.ws.rs.Path;
 import java.time.LocalDateTime;
 import java.time.LocalDate;
 
@@ -18,8 +20,11 @@ public class DetalleMatriculaAlumnoService {
     @Inject
     DetalleMatriculaAlumnoRepository detalleMatriculaAlumnoRepository;
 
-    public List<DetalleMatriculaAlumno> obtenerListadoDetalleMatricula() {
-        return detalleMatriculaAlumnoRepository.obtenerListadoDetalleMatricula();
+    @Inject
+    VwDetaMatriculaAlumnoRepository vwDetaMatriculaAlumnoRepository;
+
+    public List<VwDetaMatriculaAlumno> obtenerListadoDetalleMatricula() {
+        return vwDetaMatriculaAlumnoRepository.obtenerListadoDeta();
     }
 
     @Transactional
@@ -27,7 +32,6 @@ public class DetalleMatriculaAlumnoService {
         detalleMatricula.setAnioLectivo(LocalDate.now());
         detalleMatricula.setFechaMatricula(LocalDateTime.now());
         detalleMatriculaAlumnoRepository.persist(detalleMatricula);
-        System.out.println(detalleMatricula.getAnioLectivo());
     }
 
     @Transactional
@@ -58,7 +62,8 @@ public class DetalleMatriculaAlumnoService {
         detalleDesactivar.setIdEstadoMatricula(0); // Cambiar el estado de matrícula según tu lógica
     }
 
-    public DetalleMatriculaAlumno obtenerDetalleMatricula(Integer id) {
-        return detalleMatriculaAlumnoRepository.findById(id);
+    public VwDetaMatriculaAlumno obtenerDetalleMatricula(Integer id) {
+        return vwDetaMatriculaAlumnoRepository.obtenerDeta(id);
     }
+
 }

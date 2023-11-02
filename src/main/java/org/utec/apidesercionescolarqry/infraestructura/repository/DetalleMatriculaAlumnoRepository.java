@@ -9,9 +9,5 @@ import jakarta.enterprise.context.ApplicationScoped;
 public class DetalleMatriculaAlumnoRepository
         implements PanacheRepositoryBase<DetalleMatriculaAlumno, Integer> {
 
-    public List<DetalleMatriculaAlumno> obtenerListadoDetalleMatricula() {
-        return findAll().list();
-    }
 
-    // Puedes agregar otros métodos específicos si es necesario
 }
