@@ -1,4 +1,4 @@
-package org.utec.apidesercionescolarqry.infraestructura.provider;
+package org.utec.apidesercionescolarqry.infraestructura.repository;
 
 import org.utec.apidesercionescolarqry.model.Sexo;
 
@@ -7,6 +7,6 @@ import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
-public class SexoProvider implements PanacheRepositoryBase<Sexo, Integer> {
+public class SexoRepository implements PanacheRepositoryBase<Sexo, Integer> {
     
 }

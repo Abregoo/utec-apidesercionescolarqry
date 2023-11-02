@@ -15,7 +15,7 @@ public class SexoServices {
     SexoRepository sexoRepository;
 
     public List<Sexo> obtenerCatalogoSexo(){
-        return sexoRepository.listarCatalogoSexo();
+        return sexoRepository.listAll();
     }
 
 }
