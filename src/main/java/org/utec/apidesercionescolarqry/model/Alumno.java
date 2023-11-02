@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.json.bind.annotation.JsonbDateFormat;
 
 @Entity
 public class Alumno implements Serializable {
@@ -22,6 +23,7 @@ public class Alumno implements Serializable {
     private Integer idSexo;
     private String direccionResidencia;
     private Integer cantidadHermanos;
+    @JsonbDateFormat("dd/MM/yyyy")
     private LocalDate anioNacimiento; 
     private Boolean estado;
 
