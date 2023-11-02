@@ -1,6 +1,7 @@
 package org.utec.apidesercionescolarqry.aplicacion;
 
 
+import org.utec.apidesercionescolarqry.infraestructura.repository.ConvivenciaFamiliarRepository;
 import org.utec.apidesercionescolarqry.infraestructura.repository.DependenciaEconomicaRepository;
 import org.utec.apidesercionescolarqry.infraestructura.repository.NacionalidadRepository;
 import org.utec.apidesercionescolarqry.infraestructura.repository.RecursosBasicosRepository;
@@ -33,6 +34,9 @@ public class CatalogosService {
         @Inject
         RecursosBasicosRepository recursosBasicosRepository;
 
+        @Inject
+        ConvivenciaFamiliarRepository convivenciaFamiliarRepository;
+
         public CatalogoMatriculaDTO listarCatalogoMatricula() {
                 CatalogoMatriculaDTO cat = new CatalogoMatriculaDTO();
                 cat.lstnacionalidad = nacionalidadRepository.listAll();
@@ -41,6 +45,7 @@ public class CatalogosService {
                 cat.lstvivienda = tipoViviendaRepository.listAll();
                 cat.lstdependenciaeconomica=dependenciaEconomicaRepository.listAll();
                 cat.lstrecursosbasicos = recursosBasicosRepository.listAll();
+                cat.lstconvivenciafamiliar=convivenciaFamiliarRepository.listAll();
                 return cat;
         }
 

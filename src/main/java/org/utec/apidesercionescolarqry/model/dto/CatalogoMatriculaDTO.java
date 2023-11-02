@@ -2,6 +2,7 @@ package org.utec.apidesercionescolarqry.model.dto;
 
 import java.util.List;
 
+import org.utec.apidesercionescolarqry.model.ConvivenciaFamiliar;
 import org.utec.apidesercionescolarqry.model.DependenciaEconomica;
 import org.utec.apidesercionescolarqry.model.Nacionalidad;
 import org.utec.apidesercionescolarqry.model.RecursosBasicos;
@@ -19,6 +20,7 @@ public class CatalogoMatriculaDTO {
     public List<Nacionalidad> lstnacionalidad;
     public List<RecursosBasicos> lstrecursosbasicos;
     public List<DependenciaEconomica> lstdependenciaeconomica;
+    public List<ConvivenciaFamiliar> lstconvivenciafamiliar;
 
     // public CatalogoMatriculaDTO() {
     // }

@@ -6,12 +6,9 @@ import org.utec.apidesercionescolarqry.model.DetalleMatriculaAlumno;
 import org.utec.apidesercionescolarqry.model.VwDetaMatriculaAlumno;
 
 import jakarta.inject.Inject;
-import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
-import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
-import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.core.Response;
 
 @Path("detallematricula")
@@ -37,8 +34,5 @@ public class DetalleMatriculaAlumnoResource {
         detalleMatriculaAlumnoService.crearDetalleMatricula(detalleMatricula);
         return Response.ok().build();
     }
-
-
-
   
 }
