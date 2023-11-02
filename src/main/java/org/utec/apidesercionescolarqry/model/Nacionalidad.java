@@ -7,28 +7,28 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Sexo implements Serializable {
+public class Nacionalidad implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idSexo;
-    private String Sexo;
+    private Integer idNacionalidad;
+    private String Nacionalidad;
     private Boolean Estado;
 
-    public Integer getIdSexo() {
-        return this.idSexo;
+    public Integer getIdNacionalidad() {
+        return this.idNacionalidad;
     }
 
-    public void setIdSexo(Integer idSexo) {
-        this.idSexo = idSexo;
+    public void setIdNacionalidad(Integer idNacionalidad) {
+        this.idNacionalidad = idNacionalidad;
     }
 
-    public String getSexo() {
-        return this.Sexo;
+    public String getNacionalidad() {
+        return this.Nacionalidad;
     }
 
-    public void setSexo(String Sexo) {
-        this.Sexo = Sexo;
+    public void setNacionalidad(String Nacionalidad) {
+        this.Nacionalidad = Nacionalidad;
     }
 
     public Boolean getEstado() {
