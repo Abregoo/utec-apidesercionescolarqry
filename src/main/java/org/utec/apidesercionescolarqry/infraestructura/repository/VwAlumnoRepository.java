@@ -12,7 +12,7 @@ public class VwAlumnoRepository implements PanacheRepositoryBase<VwAlumno, Integ
     
     public List<VwAlumno> obtenerListadoAlumnos() {
         Boolean estado = false;
-        return list("estado <>?1", estado);
+        return find("estado <>?1", estado).page(0, 50).list();
     }
 
     public VwAlumno obtenerAlumno(Integer id) {
