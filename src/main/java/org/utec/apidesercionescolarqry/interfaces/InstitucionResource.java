@@ -4,6 +4,7 @@ import java.util.*;
 
 import org.utec.apidesercionescolarqry.aplicacion.InstitucionService;
 import org.utec.apidesercionescolarqry.model.Institucion;
+import org.utec.apidesercionescolarqry.model.dto.ResponseDTO;
 
 import jakarta.inject.Inject;
 import jakarta.ws.rs.DELETE;
@@ -35,20 +36,20 @@ public class InstitucionResource {
     public Response crearInstitucion(Institucion institucion) {
         institucionService.crearInstitucion(institucion);
 
-        return Response.ok().build();
+        return Response.ok(new ResponseDTO()).build();
     }
 
     @PUT
     public Response modificarInstitucion(Institucion institucion) {
         institucionService.modificarInstitucion(institucion);
-        return Response.ok().build();
+        return Response.ok(new ResponseDTO()).build();
     }
 
     @DELETE
     @Path("id/{id}")
     public Response desactivarInstitucion(Integer id) {
         institucionService.desactivar(id);
-        return Response.ok().build();
+        return Response.ok(new ResponseDTO()).build();
     }
 
 }

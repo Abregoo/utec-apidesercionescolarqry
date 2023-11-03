@@ -4,6 +4,7 @@ import java.util.List;
 import org.utec.apidesercionescolarqry.aplicacion.DetalleMatriculaAlumnoService;
 import org.utec.apidesercionescolarqry.model.DetalleMatriculaAlumno;
 import org.utec.apidesercionescolarqry.model.VwDetaMatriculaAlumno;
+import org.utec.apidesercionescolarqry.model.dto.ResponseDTO;
 
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
@@ -32,7 +33,7 @@ public class DetalleMatriculaAlumnoResource {
     @POST
     public Response crearDetalleMatricula(DetalleMatriculaAlumno detalleMatricula) {
         detalleMatriculaAlumnoService.crearDetalleMatricula(detalleMatricula);
-        return Response.ok().build();
+        return Response.ok(new ResponseDTO()).build();
     }
   
 }
