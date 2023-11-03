@@ -2,6 +2,7 @@ package org.utec.apidesercionescolarqry.interfaces;
 
 import org.utec.apidesercionescolarqry.aplicacion.CatalogosService;
 import org.utec.apidesercionescolarqry.model.dto.CatalogoMatriculaDTO;
+import org.utec.apidesercionescolarqry.model.dto.CatalogodetaMatriculaDTO;
 
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
@@ -18,6 +19,13 @@ public class CatalogosResource {
     public CatalogoMatriculaDTO obtenerCatalogos() {
 
         return catalogosService.listarCatalogoMatricula();
+    }
+
+
+    @GET
+    @Path("detallete/matricula")
+    public CatalogodetaMatriculaDTO obtenerDetaCatalogos() {
+        return catalogosService.listarCatalogoDetaMatricula();
     }
 
 }
