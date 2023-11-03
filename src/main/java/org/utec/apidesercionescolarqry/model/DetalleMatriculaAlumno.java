@@ -24,43 +24,8 @@ public class DetalleMatriculaAlumno implements Serializable {
     private LocalDate AnioLectivo;
     @JsonbDateFormat("dd/MM/yyyy")
     private LocalDateTime FechaMatricula;
-    private String nombreGrado;
-    private String nombreTurno;
-    private String nombreInstitucion;
-    private String nombreModalidad;
 
-    public String getNombreGrado() {
-        return this.nombreGrado;
-    }
-
-    public void setNombreGrado(String nombreGrado) {
-        this.nombreGrado = nombreGrado;
-    }
-
-    public String getNombreTurno() {
-        return this.nombreTurno;
-    }
-
-    public void setNombreTurno(String nombreTurno) {
-        this.nombreTurno = nombreTurno;
-    }
-
-    public String getNombreInstitucion() {
-        return this.nombreInstitucion;
-    }
-
-    public void setNombreInstitucion(String nombreInstitucion) {
-        this.nombreInstitucion = nombreInstitucion;
-    }
-
-    public String getNombreModalidad() {
-        return this.nombreModalidad;
-    }
-
-    public void setNombreModalidad(String nombreModalidad) {
-        this.nombreModalidad = nombreModalidad;
-    }
-
+    
     public Integer getIdDetalleMatriculaAlumno() {
         return this.idDetalleMatriculaAlumno;
     }
