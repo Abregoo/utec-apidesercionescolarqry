@@ -1,5 +1,6 @@
 package org.utec.apidesercionescolarqry.aplicacion;
 
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.Objects;
 
@@ -45,6 +46,13 @@ public class AlumnoService {
         return vwAlumnoRepository.obtenerAlumno(id);
     }
 
+    public void procesarAlumno(Alumno alumno) {
+        PrediccionDTO dto = algorimo(alumno);
+        if (Objects.isNull(dto)) throw new BadRequestException("El objeto probabilistico es nulo");
+        alumno.setProbabilidad(dto.probability.setScale(2, RoundingMode.HALF_UP));
+        crearAlumno(alumno);
+    }
+
     @Transactional
     public void crearAlumno(Alumno alumno) {
         alumnoRepository.persist(alumno);
@@ -52,18 +60,32 @@ public class AlumnoService {
 
 
     public PrediccionDTO algorimo(Alumno alumno) {
-        System.out.println("LLegandoo para consulta de algoritmo");
-
+        LOGGER.info("Procesando Algoritmo...");
         try {
-            String json = imprimirJSON(alumno);
+            AlumnoDTO alumnoDTO = armarAlumnoDTO(alumno);
+            String json = imprimirJSON(alumnoDTO);
             PrediccionDTO dto = apiAlgoritmoRestClient.obtenerPredicion(json);
-            System.out.println("OBTENIENDO VALOR: " + dto.probability);
+            LOGGER.info("Recibiendo respuesta Algoritmo...");
             return dto;
         } catch (Exception e) {
-            System.out.println("FALLOOOOOOOO" + e);
+            LOGGER.error("Fallo la peticion de consulta al algoritmo");
             throw new BadRequestException("FALLOOO");
         }
 
+    }
+
+    public AlumnoDTO armarAlumnoDTO(Alumno alumno) {
+        AlumnoDTO dto = new AlumnoDTO();
+        dto.cantidadHermanos = alumno.getCantidadHermanos();
+        dto.idConvivenciaFamiliar = alumno.getIdConvivenciaFamiliar();
+        dto.idDependenciaEconomica = alumno.getIdDependenciaEconomica();
+        dto.idSexo = alumno.getIdSexo();
+        dto.idNacionalidad = alumno.getIdNacionalidad();
+        dto.idRecursoBasico = alumno.getIdRecursoBasico();
+        dto.idTipoResidencia = alumno.getIdTipoResidencia();
+        dto.idTipoVivienda = alumno.getIdTipoVivienda();
+
+        return dto;
     }
 
     @Transactional
