@@ -3,8 +3,10 @@ package org.utec.apidesercionescolarqry.aplicacion;
 import java.util.List;
 import java.util.Objects;
 
+import org.eclipse.microprofile.rest.client.inject.RestClient;
 import org.utec.apidesercionescolarqry.infraestructura.repository.AlumnoRepository;
 import org.utec.apidesercionescolarqry.infraestructura.repository.VwAlumnoRepository;
+import org.utec.apidesercionescolarqry.interfaces.restclient.ApiAlgoritmoRestClient;
 import org.utec.apidesercionescolarqry.model.Alumno;
 import org.utec.apidesercionescolarqry.model.VwAlumno;
 
@@ -12,6 +14,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.BadRequestException;
+import org.utec.apidesercionescolarqry.model.dto.PrediccionDTO;
 
 @ApplicationScoped
 public class AlumnoService {
@@ -21,6 +24,10 @@ public class AlumnoService {
 
     @Inject
     VwAlumnoRepository vwAlumnoRepository;
+
+    @RestClient
+    @Inject
+    ApiAlgoritmoRestClient apiAlgoritmoRestClient;
 
     public List<VwAlumno> obtenerListadoAlumnos() {
         return vwAlumnoRepository.obtenerListadoAlumnos();
@@ -33,6 +40,11 @@ public class AlumnoService {
     @Transactional
     public void crearAlumno(Alumno alumno) {
         alumnoRepository.persist(alumno);
+    }
+
+
+    public PrediccionDTO algorimo(Alumno alumno){
+        return  apiAlgoritmoRestClient.obtenerPredicion(alumno);
     }
 
     @Transactional

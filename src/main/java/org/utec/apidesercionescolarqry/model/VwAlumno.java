@@ -1,6 +1,7 @@
 package org.utec.apidesercionescolarqry.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import jakarta.json.bind.annotation.JsonbDateFormat;
@@ -24,6 +25,8 @@ public class VwAlumno implements Serializable{
     private String sexo;
     private String direccionResidencia;
     private Integer cantidadHermanos;
+
+    private BigDecimal probabilidad;
     @JsonbDateFormat("dd/MM/yyyy")
     private LocalDate anioNacimiento;
     private Boolean estado;
@@ -124,6 +127,11 @@ public class VwAlumno implements Serializable{
         this.estado = estado;
     }
 
+    public BigDecimal getProbabilidad() {
+        return probabilidad;
+    }
 
-
+    public void setProbabilidad(BigDecimal probabilidad) {
+        this.probabilidad = probabilidad;
+    }
 }

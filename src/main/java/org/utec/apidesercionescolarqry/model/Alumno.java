@@ -1,7 +1,8 @@
 package org.utec.apidesercionescolarqry.model;
 
 import java.io.Serializable;
-import java.time.LocalDate; 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,6 +27,8 @@ public class Alumno implements Serializable {
     @JsonbDateFormat("dd/MM/yyyy")
     private LocalDate anioNacimiento; 
     private Boolean estado;
+
+    private BigDecimal probabilidad;
 
     public Integer getIdAlumno() {
         return this.idAlumno;
@@ -122,4 +125,13 @@ public class Alumno implements Serializable {
     public void setEstado(Boolean estado) {
         this.estado = estado;
     }
+
+    public BigDecimal getProbabilidad() {
+        return probabilidad;
+    }
+
+    public void setProbabilidad(BigDecimal probabilidad) {
+        this.probabilidad = probabilidad;
+    }
+
 }

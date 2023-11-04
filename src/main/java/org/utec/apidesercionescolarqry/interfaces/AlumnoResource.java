@@ -39,6 +39,12 @@ public class AlumnoResource {
         return Response.ok(new ResponseDTO()).build();
     }
 
+    @POST
+    public Response algorimoAlumno(Alumno alumno) {
+        alumnoService.crearAlumno(alumno);
+        return Response.ok(new ResponseDTO()).build();
+    }
+
     @PUT
     public Response modificarAlumno(Alumno alumno) {
         alumnoService.modificarAlumno(alumno);
