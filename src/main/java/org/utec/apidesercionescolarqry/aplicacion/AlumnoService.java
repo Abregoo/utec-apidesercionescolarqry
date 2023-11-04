@@ -14,6 +14,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.BadRequestException;
+import org.utec.apidesercionescolarqry.model.dto.AlumnoDTO;
 import org.utec.apidesercionescolarqry.model.dto.PrediccionDTO;
 
 @ApplicationScoped
@@ -25,8 +26,8 @@ public class AlumnoService {
     @Inject
     VwAlumnoRepository vwAlumnoRepository;
 
-    @RestClient
     @Inject
+    @RestClient
     ApiAlgoritmoRestClient apiAlgoritmoRestClient;
 
     public List<VwAlumno> obtenerListadoAlumnos() {
@@ -44,8 +45,8 @@ public class AlumnoService {
 
 
     public PrediccionDTO algorimo(Alumno alumno) {
-
         System.out.println("LLegandoo para consulta de algoritmo");
+
         try {
             PrediccionDTO dto = apiAlgoritmoRestClient.obtenerPredicion(alumno);
             System.out.println("OBTENIENDO VALOR: " + dto.probability);
@@ -54,7 +55,6 @@ public class AlumnoService {
             System.out.println("FALLOOOOOOOO" + e);
             throw new BadRequestException("FALLOOO");
         }
-
 
     }
 

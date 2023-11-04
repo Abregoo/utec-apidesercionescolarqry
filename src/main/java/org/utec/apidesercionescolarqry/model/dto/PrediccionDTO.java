@@ -7,5 +7,5 @@ import java.math.BigDecimal;
 
 @RegisterRestClient
 public class PrediccionDTO {
-    public BigDecimal probability;
+    public BigDecimal probability = BigDecimal.ZERO;
 }
