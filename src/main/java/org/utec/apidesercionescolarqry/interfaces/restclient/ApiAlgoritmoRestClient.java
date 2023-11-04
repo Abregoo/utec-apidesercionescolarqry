@@ -9,13 +9,12 @@ import org.utec.apidesercionescolarqry.model.Alumno;
 import org.utec.apidesercionescolarqry.model.dto.AlumnoDTO;
 import org.utec.apidesercionescolarqry.model.dto.PrediccionDTO;
 
-@Path("/")
 @RegisterRestClient(configKey = "apialgoritmo")
 public interface ApiAlgoritmoRestClient {
 
     @POST
-    @Path("predict")
-    public PrediccionDTO obtenerPredicion(Alumno alumno);
+    @Path("/predict/")
+    public PrediccionDTO obtenerPredicion(String alumno);
 
 
 }

@@ -3,7 +3,11 @@ package org.utec.apidesercionescolarqry.aplicacion;
 import java.util.List;
 import java.util.Objects;
 
+import jakarta.json.bind.Jsonb;
+import jakarta.json.bind.JsonbBuilder;
+import jakarta.ws.rs.InternalServerErrorException;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
+import org.jboss.logging.Logger;
 import org.utec.apidesercionescolarqry.infraestructura.repository.AlumnoRepository;
 import org.utec.apidesercionescolarqry.infraestructura.repository.VwAlumnoRepository;
 import org.utec.apidesercionescolarqry.interfaces.restclient.ApiAlgoritmoRestClient;
@@ -19,6 +23,9 @@ import org.utec.apidesercionescolarqry.model.dto.PrediccionDTO;
 
 @ApplicationScoped
 public class AlumnoService {
+
+    private static final Logger LOGGER = Logger.getLogger(AlumnoService.class);
+
 
     @Inject
     AlumnoRepository alumnoRepository;
@@ -48,7 +55,8 @@ public class AlumnoService {
         System.out.println("LLegandoo para consulta de algoritmo");
 
         try {
-            PrediccionDTO dto = apiAlgoritmoRestClient.obtenerPredicion(alumno);
+            String json = imprimirJSON(alumno);
+            PrediccionDTO dto = apiAlgoritmoRestClient.obtenerPredicion(json);
             System.out.println("OBTENIENDO VALOR: " + dto.probability);
             return dto;
         } catch (Exception e) {
@@ -87,6 +95,19 @@ public class AlumnoService {
             throw new BadRequestException("El alumno no fue encontrado");
 
         alumnoDesactivar.setEstado(false);
+    }
+
+    public static <T> String imprimirJSON(T clase) {
+
+        try (Jsonb jsonb = JsonbBuilder.create()) {
+            String json = jsonb.toJson(clase);
+            LOGGER.info(json);
+
+            return json;
+
+        } catch (Exception e) {
+            throw new InternalServerErrorException("Error al armar ej json");
+        }
     }
 
 }

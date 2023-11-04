@@ -44,6 +44,8 @@ public class AlumnoResource {
     @Path("/predict")
     public Response algorimoAlumno(Alumno alumno) {
         try {
+
+
             alumnoService.algorimo(alumno);
             System.out.println("LLEGANDO AL ENDPOINT");
             return Response.ok(new ResponseDTO()).build();
