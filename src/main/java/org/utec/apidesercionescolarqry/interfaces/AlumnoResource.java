@@ -40,8 +40,9 @@ public class AlumnoResource {
     }
 
     @POST
+    @Path("predict")
     public Response algorimoAlumno(Alumno alumno) {
-        alumnoService.crearAlumno(alumno);
+        alumnoService.algorimo(alumno);
         return Response.ok(new ResponseDTO()).build();
     }
 

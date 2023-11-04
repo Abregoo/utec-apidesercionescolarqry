@@ -43,8 +43,19 @@ public class AlumnoService {
     }
 
 
-    public PrediccionDTO algorimo(Alumno alumno){
-        return  apiAlgoritmoRestClient.obtenerPredicion(alumno);
+    public PrediccionDTO algorimo(Alumno alumno) {
+
+        System.out.println("LLegandoo para consulta de algoritmo");
+        try {
+            PrediccionDTO dto = apiAlgoritmoRestClient.obtenerPredicion(alumno);
+            System.out.println("OBTENIENDO VALOR: " + dto.probability);
+            return dto;
+        } catch (Exception e) {
+            System.out.println("FALLOOOOOOOO" + e);
+            throw new BadRequestException("FALLOOO");
+        }
+
+
     }
 
     @Transactional
