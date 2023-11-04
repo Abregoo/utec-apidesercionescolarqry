@@ -6,6 +6,7 @@ import org.utec.apidesercionescolarqry.aplicacion.AlumnoService;
 import org.utec.apidesercionescolarqry.model.Alumno;
 import org.utec.apidesercionescolarqry.model.VwAlumno;
 import org.utec.apidesercionescolarqry.model.dto.AlumnoDTO;
+import org.utec.apidesercionescolarqry.model.dto.PrediccionDTO;
 import org.utec.apidesercionescolarqry.model.dto.ResponseDTO;
 
 import jakarta.inject.Inject;
@@ -46,9 +47,9 @@ public class AlumnoResource {
         try {
 
 
-            alumnoService.algorimo(alumno);
+            PrediccionDTO dto= alumnoService.algorimo(alumno);
             System.out.println("LLEGANDO AL ENDPOINT");
-            return Response.ok(new ResponseDTO()).build();
+            return Response.ok(dto).build();
         } catch (Exception e) {
             System.out.println(e);
             return  Response.serverError().build();
