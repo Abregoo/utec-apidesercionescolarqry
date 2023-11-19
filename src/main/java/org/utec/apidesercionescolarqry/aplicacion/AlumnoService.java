@@ -27,7 +27,6 @@ public class AlumnoService {
 
     private static final Logger LOGGER = Logger.getLogger(AlumnoService.class);
 
-
     @Inject
     AlumnoRepository alumnoRepository;
 
@@ -47,9 +46,11 @@ public class AlumnoService {
     }
 
     public void procesarAlumno(Alumno alumno) {
-        PrediccionDTO dto = algorimo(alumno);
-        if (Objects.isNull(dto)) throw new BadRequestException("El objeto probabilistico es nulo");
+        PrediccionDTO dto = algoritmoPrediccion(alumno);
+        if (Objects.isNull(dto))
+            throw new BadRequestException("El objeto probabilistico es nulo");
         alumno.setProbabilidad(dto.probability.setScale(2, RoundingMode.HALF_UP));
+        alumno.setEstado(true);
         crearAlumno(alumno);
     }
 
@@ -58,8 +59,7 @@ public class AlumnoService {
         alumnoRepository.persist(alumno);
     }
 
-
-    public PrediccionDTO algorimo(Alumno alumno) {
+    public PrediccionDTO algoritmoPrediccion(Alumno alumno) {
         LOGGER.info("Procesando Algoritmo...");
         try {
             AlumnoDTO alumnoDTO = armarAlumnoDTO(alumno);
@@ -91,11 +91,14 @@ public class AlumnoService {
     @Transactional
     public void modificarAlumno(Alumno alumno) {
         Alumno alumnoModificar = alumnoRepository.obtenerAlumno(alumno.getIdAlumno());
-
-        if (Objects.isNull(alumnoModificar)) {
+        if (Objects.isNull(alumnoModificar))
             throw new BadRequestException("El alumno no fue encontrado");
-        }
 
+        PrediccionDTO dto = algoritmoPrediccion(alumno);
+        if (Objects.isNull(dto))
+            throw new BadRequestException("El objeto probabilistico es nulo");
+
+        alumnoModificar.setProbabilidad(dto.probability.setScale(2, RoundingMode.HALF_UP));
         alumnoModificar.setIdDependenciaEconomica(alumno.getIdDependenciaEconomica());
         alumnoModificar.setIdTipoResidencia(alumno.getIdTipoResidencia());
         alumnoModificar.setIdConvivenciaFamiliar(alumno.getIdConvivenciaFamiliar());

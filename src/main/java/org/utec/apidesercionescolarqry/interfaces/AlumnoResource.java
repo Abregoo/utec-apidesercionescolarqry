@@ -47,7 +47,7 @@ public class AlumnoResource {
         try {
 
 
-            PrediccionDTO dto= alumnoService.algorimo(alumno);
+            PrediccionDTO dto= alumnoService.algoritmoPrediccion(alumno);
             System.out.println("LLEGANDO AL ENDPOINT");
             return Response.ok(dto).build();
         } catch (Exception e) {
