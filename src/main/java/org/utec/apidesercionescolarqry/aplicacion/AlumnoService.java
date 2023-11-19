@@ -21,6 +21,7 @@ import jakarta.transaction.Transactional;
 import jakarta.ws.rs.BadRequestException;
 import org.utec.apidesercionescolarqry.model.dto.AlumnoDTO;
 import org.utec.apidesercionescolarqry.model.dto.PrediccionDTO;
+import org.utec.apidesercionescolarqry.model.dto.ResponseDTO;
 
 @ApplicationScoped
 public class AlumnoService {
@@ -45,13 +46,18 @@ public class AlumnoService {
         return vwAlumnoRepository.obtenerAlumno(id);
     }
 
-    public void procesarAlumno(Alumno alumno) {
+    public ResponseDTO procesarAlumno(Alumno alumno) {
         PrediccionDTO dto = algoritmoPrediccion(alumno);
         if (Objects.isNull(dto))
             throw new BadRequestException("El objeto probabilistico es nulo");
         alumno.setProbabilidad(dto.probability.setScale(2, RoundingMode.HALF_UP));
         alumno.setEstado(true);
         crearAlumno(alumno);
+
+        ResponseDTO dtoResponse = new ResponseDTO();
+        dtoResponse.probabilidad = alumno.getProbabilidad();
+        return dtoResponse;
+        
     }
 
     @Transactional
@@ -89,7 +95,7 @@ public class AlumnoService {
     }
 
     @Transactional
-    public void modificarAlumno(Alumno alumno) {
+    public ResponseDTO modificarAlumno(Alumno alumno) {
         Alumno alumnoModificar = alumnoRepository.obtenerAlumno(alumno.getIdAlumno());
         if (Objects.isNull(alumnoModificar))
             throw new BadRequestException("El alumno no fue encontrado");
@@ -110,6 +116,10 @@ public class AlumnoService {
         alumnoModificar.setCantidadHermanos(alumno.getCantidadHermanos());
         alumnoModificar.setAnioNacimiento(alumno.getAnioNacimiento());
         alumnoModificar.setEstado(alumno.getEstado());
+
+        ResponseDTO dtoResponse = new ResponseDTO();
+        dtoResponse.probabilidad = alumno.getProbabilidad();
+        return dtoResponse;
     }
 
     @Transactional

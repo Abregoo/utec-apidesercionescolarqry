@@ -37,8 +37,7 @@ public class AlumnoResource {
 
     @POST
     public Response crearAlumno(Alumno alumno) {
-        alumnoService.procesarAlumno(alumno);
-        return Response.ok(new ResponseDTO()).build();
+        return Response.ok(alumnoService.procesarAlumno(alumno)).build();
     }
 
     @POST
@@ -59,8 +58,7 @@ public class AlumnoResource {
 
     @PUT
     public Response modificarAlumno(Alumno alumno) {
-        alumnoService.modificarAlumno(alumno);
-        return Response.ok(new ResponseDTO()).build();
+        return Response.ok(alumnoService.modificarAlumno(alumno)).build();
     }
 
     @DELETE
