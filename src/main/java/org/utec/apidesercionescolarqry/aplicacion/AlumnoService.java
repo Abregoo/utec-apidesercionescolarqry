@@ -115,7 +115,7 @@ public class AlumnoService {
         alumnoModificar.setDireccionResidencia(alumno.getDireccionResidencia());
         alumnoModificar.setCantidadHermanos(alumno.getCantidadHermanos());
         alumnoModificar.setAnioNacimiento(alumno.getAnioNacimiento());
-        alumnoModificar.setEstado(alumno.getEstado());
+        alumnoModificar.setEstado(true);
 
         ResponseDTO dtoResponse = new ResponseDTO();
         dtoResponse.probabilidad = alumno.getProbabilidad();
