@@ -10,4 +10,6 @@ public class ResponseDTO {
     public String ok = "Todo bien";
     public BigDecimal probabilidad;
 
+    public Integer cantidad_mayor_50;
+
 }

@@ -1,5 +1,6 @@
 package org.utec.apidesercionescolarqry.infraestructura.repository;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.utec.apidesercionescolarqry.model.Alumno;
@@ -19,4 +20,13 @@ public class AlumnoRepository implements PanacheRepositoryBase<Alumno, Integer> 
         Boolean estado = false;
         return list("estado <>?1 and id =?2", estado,id).stream().findFirst().orElse(null);
     }
+
+
+    public List<Alumno> obtenerAlumnosMayor50() {
+        Boolean estado = false;
+        BigDecimal probabilidad = new BigDecimal("0.50");
+        return list("estado <>?1 and probabilidad >?2", estado,probabilidad);
+    }
+
+
 }

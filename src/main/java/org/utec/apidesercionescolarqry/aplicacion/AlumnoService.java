@@ -57,7 +57,7 @@ public class AlumnoService {
         ResponseDTO dtoResponse = new ResponseDTO();
         dtoResponse.probabilidad = alumno.getProbabilidad();
         return dtoResponse;
-        
+
     }
 
     @Transactional
@@ -130,6 +130,15 @@ public class AlumnoService {
             throw new BadRequestException("El alumno no fue encontrado");
 
         alumnoDesactivar.setEstado(false);
+    }
+
+    public ResponseDTO obtenerCantidadAlumnosMayor50Porcient() {
+        List<Alumno> lstalumno = alumnoRepository.obtenerAlumnosMayor50();
+        ResponseDTO dtoResponse = new ResponseDTO();
+        dtoResponse.cantidad_mayor_50 = 0;
+        if (lstalumno != null && !lstalumno.isEmpty()) dtoResponse.cantidad_mayor_50 = lstalumno.size();
+        return dtoResponse;
+
     }
 
     public static <T> String imprimirJSON(T clase) {

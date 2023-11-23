@@ -35,6 +35,12 @@ public class AlumnoResource {
         return Response.ok(alumnoService.obtenerAlumno(id)).build();
     }
 
+    @GET
+    @Path("cantidad/")
+    public Response cantidadMayor50() {
+        return Response.ok(alumnoService.obtenerCantidadAlumnosMayor50Porcient()).build();
+    }
+
     @POST
     public Response crearAlumno(Alumno alumno) {
         return Response.ok(alumnoService.procesarAlumno(alumno)).build();
