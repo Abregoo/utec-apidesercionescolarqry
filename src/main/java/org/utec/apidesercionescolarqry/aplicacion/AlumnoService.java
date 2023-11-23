@@ -1,5 +1,6 @@
 package org.utec.apidesercionescolarqry.aplicacion;
 
+import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
 import java.util.Objects;
@@ -118,7 +119,7 @@ public class AlumnoService {
         alumnoModificar.setEstado(true);
 
         ResponseDTO dtoResponse = new ResponseDTO();
-        dtoResponse.probabilidad = alumno.getProbabilidad();
+        dtoResponse.probabilidad = alumnoModificar.getProbabilidad();
         return dtoResponse;
     }
 
