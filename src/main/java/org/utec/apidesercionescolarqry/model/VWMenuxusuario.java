@@ -1,6 +1,7 @@
 package org.utec.apidesercionescolarqry.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -64,4 +65,16 @@ public class VWMenuxusuario implements Serializable {
         this.url = url;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        VWMenuxusuario that = (VWMenuxusuario) o;
+        return Objects.equals(vwMenuxusuarioPK, that.vwMenuxusuarioPK) && Objects.equals(nombre, that.nombre) && Objects.equals(apellido, that.apellido) && Objects.equals(telefono, that.telefono) && Objects.equals(descripcion, that.descripcion) && Objects.equals(url, that.url);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(vwMenuxusuarioPK, nombre, apellido, telefono, descripcion, url);
+    }
 }
